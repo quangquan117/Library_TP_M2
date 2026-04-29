@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import type { Book } from './interface/book'
 import { PrintAllBooks } from './component/Booklist'
+import { AddBook } from './component/AddBook'
 function App() {
   const [books, setBooks] = useState<Book[]>([
     { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', available: true },
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <h1>Library Management System</h1>
+      <AddBook Books={books} setBooks={setBooks} />
       <PrintAllBooks books={books} />
     </>
   )
