@@ -12,6 +12,7 @@ export function AddBook({Books, setBooks}: {Books: { [id: string]: Book }, setBo
         e.preventDefault()
         setShowForm(false)
         const newBook: Book = {
+            id: Date.now(),
             title: (e.currentTarget.elements[0] as HTMLInputElement).value,
             author: (e.currentTarget.elements[1] as HTMLInputElement).value,
             available: true
