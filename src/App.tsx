@@ -4,18 +4,18 @@ import type { Book } from './interface/book'
 import { PrintAllBooks } from './component/Booklist'
 import { AddBook } from './component/AddBook'
 function App() {
-  const [books, setBooks] = useState<Book[]>([
-    { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', available: true },
-    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', available: false },
-    { id: 3, title: '1984', author: 'George Orwell', available: true },
-  ])
+  const [books, setBooks] = useState<{ [id: string]: Book }>({
+    "1" :{ title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', available: true },
+    "2" :{ title: 'To Kill a Mockingbird', author: 'Harper Lee', available: false },
+    "3" :{ title: '1984', author: 'George Orwell', available: true },
+  })
 
 
   return (
     <>
       <h1>Library Management System</h1>
       <AddBook Books={books} setBooks={setBooks} />
-      <PrintAllBooks books={books} />
+      <PrintAllBooks books={Object.values(books)} />
     </>
   )
 }

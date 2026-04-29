@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form } from "./Form"
 import type { Book } from '../interface/book'
 
-export function AddBook({Books, setBooks}: {Books: Book[], setBooks: React.Dispatch<React.SetStateAction<Book[]>>}) {
+export function AddBook({Books, setBooks}: {Books: { [id: string]: Book }, setBooks: React.Dispatch<React.SetStateAction<{ [id: string]: Book }>>}) {
     const [showForm, setShowForm] = useState(false)
     const onClickAddBook = () => {
         setShowForm(!showForm)
@@ -10,15 +10,13 @@ export function AddBook({Books, setBooks}: {Books: Book[], setBooks: React.Dispa
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // Logic to add book goes here
         setShowForm(false)
         const newBook: Book = {
-            id: Date.now(),
             title: (e.currentTarget.elements[0] as HTMLInputElement).value,
             author: (e.currentTarget.elements[1] as HTMLInputElement).value,
             available: true
         }
-        setBooks([...Books, newBook])
+        setBooks({...Books, [Date.now().toString()]: newBook})
     }
 
     return (
